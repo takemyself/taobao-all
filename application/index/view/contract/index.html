@@ -1,0 +1,127 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="__ROOT__/index/img/ban4.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            <a href="javascript:;" class="mune_active">联系我们</a>
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="{:url('index/index/index')}">首页</a>
+            >
+            <span>联系我们</span>
+        </div>
+    </div>
+    <div class="contrac_content">
+        <div class="contact">
+            <div class="contact_left">
+                <div class="contrac_tiele">联系方式</div>
+                <div class="contact_mess">
+                    <p>联系电话 : <b>{$conData.phone}</b></p>
+                    <p>地址 : {$conData.address}</p>
+                    <p>微信 : {$conData.qq} 邮箱:{$conData.email}</p>
+                </div>
+            </div>
+            <div class="contact_right">
+                <a href="{:url('index/loves/index')}">
+                    <span><img src="__ROOT__/index/img/zxjk.png" height="100" alt=""></span>
+                    <span class="img_mess">献爱心</span>
+                </a>
+                <a href="" class="erweima">
+                    <img src="__ROOT__/index/img/erweima.png" width="140" height="140" alt="">
+                    <span>【扫一扫，手机看】</span>
+                </a>
+            </div>
+        </div>
+        <div class="contact">
+            <div class="contact_left">
+                <form action="" method="post" onsubmit="return false" class="formdata">
+                    <div class="contrac_tiele">在线留言</div>
+                    <div class="contact_mess">
+                        <div>姓名 :&nbsp;</div>
+                        <input type="text" name="name">
+                        <span class="pro"></span>
+                    </div>
+                    <div class="contact_mess">
+                        <div>手机 :&nbsp;</div>
+                        <input type="text" name="phone">
+                        <span class="pro"></span>
+                    </div>
+                    <div class="contact_mess">
+                        <div>邮箱 :&nbsp;</div>
+                        <input type="text" name="email">
+                        <span class="pro"></span>
+                    </div>
+                    <div class="contact_mess">
+                        <div>留言 :&nbsp;</div>
+                        <textarea name="messages" id="" cols="50" rows="8"></textarea>
+                        <span class="pro"></span>
+                    </div>
+                    <input type="submit" class="tijiao" value="提交" onclick="lamess()">
+                </form>
+            </div>
+            <script>
+                function lamess() {
+                    var data=$('.formdata').serialize();
+                    $.post('ajaxMessage',data,function (res) {
+                        if (res==1){
+                          $('.formdata')[0].reset();
+                          alert('success');
+                        }else {
+                          alert(res.msg);
+                        }
+                    },'json');
+                }
+            </script>
+            <div class="contact_right">
+                <div id="container" style="width: 410px;height: 410px;float: right"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=Tblqg86sBayjdyilxAxOa1n7vPsXLU7r"></script>
+<script type="text/javascript">
+    var mp = new BMap.Map("container");
+    mp.centerAndZoom(new BMap.Point(121.480539,31.230989), 15);
+    mp.enableScrollWheelZoom();
+
+    var canvasLayer = new BMap.CanvasLayer({
+        update: update
+    });
+
+    function update() {
+        var ctx = this.canvas.getContext("2d");
+
+        if (!ctx) {
+            return;
+        }
+
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        var temp = {};
+        ctx.fillStyle = "rgba(50, 50, 255, 0.7)";
+        ctx.beginPath();
+        var data = [
+            new BMap.Point(116.297047,39.979542),
+        ];
+
+        for (var i = 0, len = data.length; i < len; i++) {
+            var pixel = mp.pointToPixel(data[i]);
+            ctx.fillRect(pixel.x, pixel.y, 30, 30);
+        }
+    }
+    mp.addOverlay(canvasLayer);
+</script>
+{/block}

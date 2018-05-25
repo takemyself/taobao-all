@@ -1,0 +1,47 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="__ROOT__/index/img/ban1.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            {volist name="$newcategory" id="vo"}
+                {if condition="$vo.cid==$cid"}
+                <a href="{:url('index',['cid'=>$vo.cid])}" class="mune_active">{$vo.cname}</a>
+                {else /}
+                <a href="{:url('index',['cid'=>$vo.cid])}">{$vo.cname}</a>
+                {/if}
+            {/volist}
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="{:url('index/index/index')}">首页</a>
+            >
+            <span>新闻动态</span>
+        </div>
+    </div>
+    <div class="menu_content">
+        <div class="news_tiele">
+            {$data.title}
+        </div>
+        <div class="news_mess">
+            <div class="news_mess_left">时间:{$data.create_time}</div>
+            <div class="news_mess_right">阅读量:{$data.reads}</div>
+        </div>
+        <div class="news_contet">
+            {$data.content}
+        </div>
+    </div>
+</div>
+
+{/block}

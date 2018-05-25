@@ -1,0 +1,145 @@
+{extend name='public/master'}
+{block name='content'}
+<div class="swiper-container" id="swiper1">
+    <div class="swiper-wrapper">
+        {volist name="bannerData" id="vo"}
+        <div class="swiper-slide">
+            <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+        </div>
+        {/volist}
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<!--news sta-->
+<div class="news">
+    <div class="news_out">
+        {volist name="newsData" id='vo'}
+        <div class="news_items">
+            <ul>
+                <li>
+                    <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+                </li>
+                <li>
+                    <img src="__ROOT__/index/img/icon.png" alt="">
+                    <span>{$newscategoryData[$vo.cid]}</span>
+                </li>
+                <li>
+                    {$vo.title}
+                </li>
+                <li>
+                    {$vo.abstract}
+                </li>
+                <li>
+                    <a href="{:url('index/news/newscontent',['nid'=>$vo.nid])}">
+                        查看更多
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {/volist}
+    </div>
+</div>
+<!--news end-->
+
+<!--xingdong sta-->
+<div class="xing">
+    <div class="dong">
+        <div class="title">
+            公益行动
+            <span></span>
+            <a href="{:url('index/actions/index')}" class="title_more">查看更多</a>
+        </div>
+        <div class="xing_out">
+            {volist name="actionsData" id="vo"}
+            <div class="xing_items">
+                <ul>
+                    <a href="action.html" style="color: black">
+                        <li>
+                            <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+                        </li>
+                        <li></li>
+                        <li><div>{$vo.title}</div></li>
+                        <li>-- {$vo.create_time} --</li>
+                    </a>
+                </ul>
+            </div>
+            {/volist}
+
+        </div>
+    </div>
+</div>
+<!--xingdong end-->
+
+<!--video sta-->
+<div class="vid">
+    <div class="title">
+        公益视频
+        <span></span>
+        <a href="{:url('index/videos/index')}" class="title_more">查看更多</a>
+    </div>
+    <div>
+        <div class="vid_items">
+            <a href="http://{$videosData.0.src}" target="_blank">
+                <img src="__ROOT__/uploads/{$videosData.0.pic}" width="100%" height="390" alt="">
+                <div class="vid_content">
+                    <span>{$videosData.0.title}</span>
+                    <p>
+                        {$videosData.0.contract}
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="vid_items">
+            {volist name="$videosData" id="vo" offset="1" length="4"}
+            <a href="http://{$vo.src}">
+                <img src="__ROOT__/uploads/{$vo.pic}" width="100%" height="165" alt="">
+                <span>{$vo.title}</span>
+                <span>{$vo.create_time}</span>
+            </a>
+            {/volist}
+        </div>
+    </div>
+</div>
+<!--video end-->
+
+<!--coop sta-->
+<div class="xing" style="background:#c79744">
+    <div class="dong" style="height: 300px;">
+        <div class="title" style="color:white;">
+            合作伙伴
+            <span style="background: white"></span>
+        </div>
+        <div class="xing_out he">
+            {volist name="$adData" id="vo"}
+            <div class="xing_items">
+                <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+            </div>
+            {/volist}
+            {volist name="$adData" id="vo"}
+            <div class="xing_items">
+                <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+<!--coop end-->
+<script>
+    $(function () {
+        var mySwiper = new Swiper('#swiper1', {
+            autoplay: true,//可选选项，自动滑动
+            grabCursor : true,//手掌
+            speed:300,//滑动到结束速度
+            loop : true,//环路
+            pagination: {
+                el: '.swiper-pagination',//分页
+                clickable :true,//分页互相控制
+            },
+        });
+        if(mySwiper.slides.length<=3){
+            mySwiper.destroy();
+        }
+    });
+</script>
+{/block}

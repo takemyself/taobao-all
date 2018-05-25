@@ -1,0 +1,75 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="__ROOT__/index/img/ban2.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            <a href="javascript:;">捐款说明</a>
+            <a href="javascript:;">捐款信息</a>
+            <a href="javascript:;" class="mune_active">完成捐款</a>
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="index.html">首页</a>
+            >
+            <span>捐款</span>
+        </div>
+    </div>
+    <div class="action_fin">
+        <div class="succ">
+            <h2>恭喜您，捐款成功</h2>
+            <p>捐款编号：121231231 [<span>复制编号</span>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 捐款金额1000元（感谢您的爱心）</p>
+            <div class="youcan">
+                <a href="">您还可以</a>
+                <a href="{:url('index/index/index')}">返回首页</a>
+                <a href="contributions_mess.html">撤回，重新捐款</a>
+                <a href="">（如有疑问，请联系我们）</a>
+            </div>
+            <p><span>温馨说明：</span>提示文字</p>
+        </div>
+    </div>
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            <a href="javascript:;" class="mune_active">推荐公益</a>
+        </div>
+        <div class="menu_right">
+            <a href="action.html">查看更多>></a>
+        </div>
+    </div>
+    <div class="action">
+        <ul>
+            <li class="action_itmes">
+                <div class="action_left">
+                    <div>1</div>
+                    <div>
+                        hollow word
+                        <br>
+                        世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你
+                    </div>
+                    <div class="action_botton">
+                        <a href="javascript:;">世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你世界你好世界你好世界你好世界你好世界你好世界你好世界你好世界你</a>
+                        <a href="newscontent.html">详情</a>
+                    </div>
+                </div>
+                <div class="action_right">
+                    <img src="__ROOT__/index/img/03060907.png" width="600" alt="">
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{/block}

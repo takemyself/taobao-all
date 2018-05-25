@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .warp{
+            width: 100px;
+            height: 200px;
+            background: yellow;
+            margin: 100px auto;
+            position: relative;
+        }
+        .out{
+            width: 20px;
+            height: 20px;
+            background: yellow;
+            position: absolute;
+            left: 50%;
+            top: -20px;
+            transform: translateX(-50%);
+        }
+        .left{
+            width: 0px;
+            height:0px;
+            border-top: 20px solid transparent;
+            border-right: 10px solid black;
+            position: absolute;
+            overflow: hidden;
+            left: 0px;
+            top: 0px;
+        }
+        .right{
+            width: 0px;
+            height:0px;
+            border-top: 20px solid transparent;
+            border-left: 10px solid black;
+            position: absolute;
+            overflow: hidden;
+            right: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <div class="out">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+</html>

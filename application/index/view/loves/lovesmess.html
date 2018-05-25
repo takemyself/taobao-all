@@ -1,0 +1,185 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="./img/ban4.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            <a href="javascript:;">捐款说明</a>
+            <a href="javascript:;" class="mune_active">捐款信息</a>
+            <a href="javascript:;">完成捐款</a>
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="index.html">行动</a>
+            >
+            <span>捐赠捐款</span>
+        </div>
+    </div>
+    <div class="contrac_content">
+        <div class="contact">
+            <div class="contact_left">
+                <div class="contrac_tiele">捐款人信息</div>
+                <div class="contact_mess">
+                    <div>姓名 :&nbsp;</div>
+                    <input type="text">
+                    <span class="pro"></span>
+                </div>
+                <div class="contact_mess">
+                    <div>称呼 :&nbsp;</div>
+                    <input type="radio" class="radios" value="">先生
+                    <input type="radio" class="radios" value="">女士
+                    <input type="radio" class="radios" value="">儿童
+                    <input type="radio" class="radios" value="">匿名
+                </div>
+                <div class="contact_mess">
+                    <div>手机 :&nbsp;</div>
+                    <input type="text">
+                    <span class="pro"></span>
+                </div>
+                <div class="contact_mess">
+                    <div>邮箱 :&nbsp;</div>
+                    <input type="text">
+                    <span class="pro"></span>
+                </div>
+                <div class="contact_mess">
+                    <div>验证码 :&nbsp;</div>
+                    <input type="text">
+                    <span class="pro"></span>
+                </div>
+            </div>
+            <div class="contact_right">
+                <div class="contact_left contri_mess">
+                    <div class="contrac_tiele">捐款名单</div>
+                    <div class="contact_mess">
+                        <ul>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                            <li>
+                                <div class="ju_left">☆ 2018-01-01 王某某已捐款</div>
+                                <div class="ju_right">1000元</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact">
+            <div class="contact_left">
+                <div class="contrac_tiele">金额</div>
+                <div class="contact_mess">
+                    <div>捐款金额</div>
+                    <div class="money">
+                        <span class="price">100</span>
+                        <span class="price money_active_line">200 <div class="money_active"></div> </span>
+                        <span class="price">300</span>
+                        <span class="price">400</span>
+                        <span class="price">500</span>
+                        <span class="price">600</span>
+                        <span class="price">其他金额</span>
+                    </div>
+                </div>
+                <div class="contact_mess">
+                    <div>支付方式</div>
+                    <div class="money">
+                        <span class="mode">微信</span>
+                        <span class="mode">支付宝</span>
+                    </div>
+                </div>
+                <a href="{:url('index/loves/lovessucc')}"><input type="submit" class="tijiao" value="提交"></a>
+                <a href="contributions.html"><input type="submit" class="fanhui" value="返回上一级"></a>
+            </div>
+            <div class="contact_right">
+                <div class="pu_action">
+                    <div class="pu_heard">
+                        公益行动
+                    </div>
+
+                    <div class="pu_content">
+                        <div class="pu_img">
+                            <img src="./img/03060908.png" alt="">
+                        </div>
+                        <div class="pu_title">
+                            <div class="pu_name">
+                                <div class="pu_tit">公益行动</div>
+                                <div class="pu_date">2018-01-01</div>
+                            </div>
+                            <div class="pu_me">
+                                公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动
+                                公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pu_content">
+                        <div class="pu_img">
+                            <img src="./img/03060908.png" alt="">
+                        </div>
+                        <div class="pu_title">
+                            <div class="pu_name">
+                                <div class="pu_tit">公益行动</div>
+                                <div class="pu_date">2018-01-01</div>
+                            </div>
+                            <div class="pu_me">
+                                公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动
+                                公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动公益行动
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(function () {
+        var $price=$('.price');
+        var str='<div class="money_active"></div>';
+        $price.click(function () {
+            var oall=$price.length-1;
+            var num=$(this).index();
+            if (num<oall){
+                var oldstr=$(this).html();
+                $(this).addClass('money_active_line').siblings().removeClass('money_active_line');
+                $(this).html(oldstr+str).siblings().find('.money_active').removeClass();
+            }else {
+                $(this).parents('.money').html('<div>&nbsp;:&nbsp;<input type="text"></div>');
+            }
+        });
+        $('.mode').click(function () {
+            var oldstr=$(this).html();
+            $(this).addClass('money_active_line').siblings().removeClass('money_active_line');
+            $(this).html(oldstr+str).siblings().find('.money_active').removeClass();
+        });
+    });
+</script>
+{/block}

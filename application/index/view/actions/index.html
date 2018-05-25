@@ -1,0 +1,66 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="__ROOT__/index/img/ban2.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            {volist name="$actionscategory" id="vo"}
+            {if condition="$vo.cid==$cid"}
+            <a href="{:url('index/actions/index',['cid'=>$vo.cid])}" class="mune_active">{$vo.cname}</a>
+            {else /}
+            <a href="{:url('index/actions/index',['cid'=>$vo.cid])}">{$vo.cname}</a>
+            {/if}
+            {/volist}
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="{:url('index/index/index')}">首页</a>
+            >
+            <span>行动</span>
+        </div>
+    </div>
+    <div class="action">
+        <ul>
+            {volist name="$list" id="vo"}
+            <li class="action_itmes">
+                <div class="action_left">
+                    <div>{$i}</div>
+                    <div>
+                        {$vo.en_title}
+                        <br>
+                        {$vo.title}
+                    </div>
+                    <div class="action_botton">
+                        <a href="javascript:;">{$vo.abstract}</a>
+                        <a href="{:url('index/actions/content',['cid'=>$cid,'nid'=>$vo.nid])}">详情</a>
+                    </div>
+                </div>
+                <div class="action_right">
+                    <img src="__ROOT__/uploads/{$vo.pic}" width="600" alt="">
+                </div>
+            </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="jump">
+        <div class="jump_left">
+            {$page}
+        </div>
+        <div class="jump_right">
+            {$page}
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="__ROOT__/index/css/pages.css">
+{/block}

@@ -1,0 +1,36 @@
+{extend name='public/master'}
+{block name='content'}
+<style>
+    .top{
+        background-color: white;
+    }
+    .nav>a{
+        color: black;
+    }
+</style>
+<div class="banner">
+    <img src="__ROOT__/index/img/ban4.jpg" width="100%" alt="">
+</div>
+
+<div class="menu">
+    <div class="menu_heard">
+        <div class="menu_left">
+            <a href="javascript:;" class="mune_active">捐款说明</a>
+            <a href="javascript:;">捐款信息</a>
+            <a href="javascript:;">完成捐款</a>
+        </div>
+        <div class="menu_right">
+            <span>您的位置</span>
+            <a href="index.html">行动</a>
+            >
+            <span>捐赠捐款</span>
+        </div>
+    </div>
+    <div class="contrac_content">
+        <p class="contri_content">
+            捐款说明
+        </p>
+        <a href="{:url('index/loves/lovesmess')}" class="next">下一步</a>
+    </div>
+</div>
+{/block}
