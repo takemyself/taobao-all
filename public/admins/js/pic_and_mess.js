@@ -29,8 +29,8 @@ $(function () {
 
     });
     //编辑器
-    var ue = UE.getEditor('editor',{
-        initialFrameHeight:300,
-        initialFrameWidth:800,
-    });
+    // var ue = UE.getEditor('editor',{
+    //     initialFrameHeight:300,
+    //     initialFrameWidth:800,
+    // });
 });

@@ -1,0 +1,101 @@
+{extend name='public/master' /}
+{block name='content'}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">商品新增</h3>
+    </div>
+    <div class="panel-body">
+        <a href="{:url('index')}" class="btn btn-info">返回列表</a>
+    </div>
+    <div class="panel-body">
+        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputEmail1" class="col-sm-2 control-label">名称</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail1" required placeholder="名称"  name="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">上传图片(400*500)</label>
+                <div class="col-sm-10" id="dispathed">
+                    <input type="file"  name="file_upload" id="file_upload" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">分类</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="cid">
+                        {volist name="$cateDate" id="vo"}
+                        <option value="{$vo.cid}">{$vo.cname}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail2" class="col-sm-2 control-label">附加介绍</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail2" required placeholder="附加介绍" name="introduction">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail4" class="col-sm-2 control-label">原价</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail4" required placeholder="原价" name="oldprice">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail6" class="col-sm-2 control-label">现价</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail6" required placeholder="现价" name="price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail7" class="col-sm-2 control-label">已购数量</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail7" required placeholder="已购数量" name="hadbuy">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail5" class="col-sm-2 control-label">优惠卷</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail5" required placeholder="优惠卷" name="ticket">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail8" class="col-sm-2 control-label">简介</label>
+                <div class="col-sm-10 goods_contents">
+                    <div class="row goods_c">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="inputEmail8" required placeholder="简介" name="content[]">
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary addcontent">追加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">优惠卷复制码</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" required placeholder="优惠卷复制码" name="code">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary">提交保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $('.addcontent').click(function () {
+      str='<div class="row goods_c"><div class="col-sm-5"><input type="text" class="form-control" id="inputEmail8" required placeholder="简介" name="content[]"></div><div class="col-sm-4"><button type="button" class="btn btn-primary delcontent">删除</button></div></div>';
+      $('.goods_contents').append(str);
+      $('.delcontent').click(function () {
+        $(this).parents('.goods_c').remove();
+      });
+    });
+</script>
+<script src="__ROOT__/admins/js/pic_and_mess.js"></script>
+{/block}

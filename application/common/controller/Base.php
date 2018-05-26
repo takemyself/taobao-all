@@ -15,10 +15,10 @@ class Base extends Controller
 {
     public function _initialize()
     {
-        parent ::_initialize();
-        $initData=Cache::remember('introduction',function(){
-            return (new Introduction())->get(1)->toArray();
-        });
-        $this->assign('initData',$initData);
+//        parent ::_initialize();
+//        $initData=Cache::remember('introduction',function(){
+//            return (new Introduction())->get(1)->toArray();
+//        });
+//        $this->assign('initData',$initData);
     }
 }
