@@ -206,7 +206,7 @@ extend(Chart.prototype, {
 			cssHeight,
 			options = merge(chart.options, additionalOptions); // copy the options and add extra options
 
-		// IE compatibility hack for generating SVG content that it doesn't really understand
+		// IE compatibility hack for generating SVG contents.html that it doesn't really understand
 		if (!doc.createElementNS) {
 			/*jslint unparam: true*//* allow unused parameter ns in function below */
 			doc.createElementNS = function (ns, tagName) {
@@ -378,7 +378,7 @@ extend(Chart.prototype, {
 
 		chart.isPrinting = true;
 
-		// hide all body content
+		// hide all body contents.html
 		each(childNodes, function (node, i) {
 			if (node.nodeType === 1) {
 				origDisplay[i] = node.style.display;
@@ -399,7 +399,7 @@ extend(Chart.prototype, {
 			// put the chart back in
 			origParent.appendChild(container);
 
-			// restore all body content
+			// restore all body contents.html
 			each(childNodes, function (node, i) {
 				if (node.nodeType === 1) {
 					node.style.display = origDisplay[i];

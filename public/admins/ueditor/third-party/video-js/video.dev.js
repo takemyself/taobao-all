@@ -1503,7 +1503,7 @@ vjs.Component.prototype.el = function(){
 vjs.Component.prototype.contentEl_;
 
 /**
- * Return the component's DOM element for embedding content.
+ * Return the component's DOM element for embedding contents.html.
  * Will either be el_ or a new element defined in createEl.
  *
  * @return {Element}
@@ -2191,7 +2191,7 @@ vjs.Button.prototype.createEl = function(type, props){
   // Add standard Aria and Tabindex info
   props = vjs.obj.merge({
     className: this.buildCSSClass(),
-    innerHTML: '<div class="vjs-control-content"><span class="vjs-control-text">' + (this.buttonText || 'Need Text') + '</span></div>',
+    innerHTML: '<div class="vjs-control-contents.html"><span class="vjs-control-text">' + (this.buttonText || 'Need Text') + '</span></div>',
     role: 'button',
     'aria-live': 'polite', // let the screen reader user know that the text of the button may change
     tabIndex: 0
@@ -2486,7 +2486,7 @@ vjs.Menu.prototype.addItem = function(component){
 vjs.Menu.prototype.createEl = function(){
   var contentElType = this.options().contentElType || 'ul';
   this.contentEl_ = vjs.createEl(contentElType, {
-    className: 'vjs-menu-content'
+    className: 'vjs-menu-contents.html'
   });
   var el = vjs.Component.prototype.createEl.call(this, 'div', {
     append: this.contentEl_,
@@ -4268,7 +4268,7 @@ vjs.RemainingTimeDisplay.prototype.updateContent = function(){
 
   // Allows for smooth scrubbing, when player can't keep up.
   // var time = (this.player_.scrubbing) ? this.player_.getCache().currentTime : this.player_.currentTime();
-  // this.content.innerHTML = vjs.formatTime(time, this.player_.duration());
+  // this.contents.html.innerHTML = vjs.formatTime(time, this.player_.duration());
 };
 /**
  * Toggle fullscreen video
@@ -4492,7 +4492,7 @@ vjs.PlayProgressBar.prototype.createEl = function(){
 vjs.SeekHandle = vjs.SliderHandle.extend();
 
 /**
- * The default value for the handle content, which may be read by screen readers
+ * The default value for the handle contents.html, which may be read by screen readers
  *
  * @type {String}
  * @private
@@ -6388,7 +6388,7 @@ vjs.TextTrack.prototype.parseCues = function(srcContent) {
 
     line = vjs.trim(lines[i]); // Trim whitespace and linebreaks
 
-    if (line) { // Loop until a line with content
+    if (line) { // Loop until a line with contents.html
 
       // First line could be an optional cue ID
       // Check if line has the time separator

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>当日</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ROOT__/index/css/index.css">
+    <script src="__ROOT__/index/js/jquery.min.js"></script>
+    <script src="__ROOT__/index/js/clipboard.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="overflow: hidden;">
+    <div class="row" style="overflow: hidden;">
+        <div class="col-xs-12">
+            <img src="__ROOT__/uploads/{$contents.pic}" width="100%" alt="">
+        </div>
+    </div>
+    <div class="row center">
+        <a href="javascript:;" class="col-xs-12">
+            <div class="col-xs-12" style="font-size: 16px;line-height: 28px;">
+                {$contents.name}
+            </div>
+            <div class="col-xs-12 fontSize_mess">
+                {$contents.introduction}
+            </div>
+            <div class="col-xs-12" style="vertical-align: bottom;">
+                <div class="pull-left m_p_zreo fontSize_fin">券后价：<span style="color: #ff5044;">¥</span><span class="buy_now">{$contents.price}</span></div>
+                <div class="pull-left m_p_zreo" style="margin-left: 5px;"><del class="fontSize_cat">¥{$contents.oldprice}</del></div>
+                <div class="pull-right fontSize_buy">{$contents.hadbuy}人已购</div>
+            </div>
+        </a>
+    </div>
+    <div class="row" style="background:#f1f1f1;overflow: hidden;">
+        <div class="content_quan" style="background-image:url('__ROOT__/index/img/quan.png');">
+            <div class="col-xs-2" style="font-size: 16px;color: #ff5044;line-height: 88px;">¥<span style="font-size: 30px;color: #ff5044;line-height: 88px;">{$contents.ticket}</span></div>
+            <div class="col-xs-6">
+                <div style="margin-top: 25px;text-align: center;">优惠券使用期限</div>
+                <div style="text-align: center;font-size: 10px;">{$contents.endtime}</div>
+            </div>
+            <div class="col-xs-4 tobuy" style="color: white;line-height: 88px;text-align: center;font-size: 20px;">
+                立即领券
+            </div>
+        </div>
+    </div>
+    <div class="row p30">
+        <a href="{:url('index/index/index')}" class="col-xs-8 col-xs-offset-2"
+           style="background: #ff5044;height: 50px;border-radius: 50px;text-align: center;line-height: 50px;color: white;font-size: 16px;">
+            返回首页
+        </a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop in opas opa"></div>
+<div class="modal opas opa" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="overflow: hidden;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 lin_title">
+                        {$contents.name}
+                    </div>
+                    <div class="col-xs-2 copyclose" style="background: #ff5044;text-align: right;color: white;font-size: 32px;line-height: 43px;position: absolute;right: 10px;top: 0;">
+                        ×
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="font-size: 14px;margin-top: 5px;">
+                <div class="col-xs-10 col-xs-offset-1" style="padding:10px 0;text-align: left;font-size: 12px;line-height:20px;color: #000;background-color: #FFF6F2;border: 1px dashed #FE814B;">
+                    {volist name="$contents.content" id="vo"}
+                    <div class="col-xs-12">
+                        {$vo}
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="row p30">
+                <div class="col-xs-8 col-xs-offset-2 copyed" style="background: #ff5044;height: 40px;border-radius: 40px;text-align: center;line-height: 40px;color: white;font-size: 16px;">
+                    一键复制文案
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" style="width:100%;overflow:hidden;padding: 10px 0;color: #828888;text-align: center;font-size: 12px;background-color: #F6F7F6;">复制文案，打开手机淘宝即可领取优惠卷</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+  $('.tobuy').click(function () {
+    $('.opas').removeClass('opa');
+  });
+
+  $('.copyclose').click(function () {
+    $('.opas').addClass('opa');
+  });
+
+  $('.rebefore').click(function () {
+    history.go(-1);
+  });
+
+  var str="{$contents['code']}";
+  var clipboard = new Clipboard('.copyed', {
+    text: function() {
+      return str;
+    }
+  });
+
+  clipboard.on('success', function(e) {
+    $('.copyed').html('复制成功');
+  });
+
+  clipboard.on('error', function(e) {
+    console.log(e);
+  });
+</script>
+</html>

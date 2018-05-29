@@ -1,0 +1,47 @@
+{extend name="public/master"}
+{block name="content"}
+<div style="overflow: hidden;">
+    <div class="row center">
+        {volist name="$goodsAllData" id="vo" empty="没没有更多了"}
+        <a href="{:url('index/index/contents',['id'=>$vo.id])}" cid="{$vo.cid}" class="col-xs-12 p10">
+            <div class="col-xs-5">
+                <img src="__ROOT__/uploads/{$vo.pic}" width="140" height="140" alt="">
+            </div>
+            <div class="col-xs-7" style="height: 140px;overflow: hidden;">
+                <div class="row fontSize_title">
+                    {$vo.name}
+                </div>
+                <div class="row fontSize_mess">
+                    {$vo.introduction}
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 m_p_zreo fontSize_cat">天猫价：{$vo.oldprice}</div>
+                    <div class="col-xs-6">
+                        <div class="fontSize_buy">{$vo.hadbuy}人已购</div>
+                    </div>
+                </div>
+                <div class="row center_price">
+                    <div class="col-xs-6 m_p_zreo fontSize_now">¥{$vo.price}</div>
+                    <div class="col-xs-6">
+                        <div class="juan" style="background-image:url('__ROOT__/index/img/jaun-1.png') ">
+                            {$vo.ticket}元 券
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {/volist}
+    </div>
+</div>
+<script>
+    var cid="{$cid}";
+    var aLen=$('.a_active');
+    for (var i=0;i<aLen.length;i++){
+      var a_cid=aLen.eq(i).attr('cid');
+      if(cid==a_cid){
+        $('.a_active_in').removeClass('active');
+        aLen.eq(i).addClass('active').siblings('.a_active').removeClass('active');
+      }
+    }
+</script>
+{/block}

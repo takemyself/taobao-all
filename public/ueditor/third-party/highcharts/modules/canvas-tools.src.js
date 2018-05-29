@@ -3029,7 +3029,7 @@ if (CanvasRenderingContext2D) {
 					offsetTop = chartContainer.offsetTop,
 					position;
 
-				// Set the content of the tooltip
+				// Set the contents.html of the tooltip
 				tooltipDiv.innerHTML = args.text;
 
 				// Compute the best position for the tooltip based on the divs size and container size.

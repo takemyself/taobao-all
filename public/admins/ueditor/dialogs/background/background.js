@@ -17,14 +17,14 @@
                 for (var j = 0; j < tabs.length; j++) {
                     if(tabs[j] == target){
                         tabs[j].className = "focus";
-                        var contentId = tabs[j].getAttribute('data-content-id');
+                        var contentId = tabs[j].getAttribute('data-contents.html-id');
                         $G(contentId).style.display = "block";
                         if(contentId == 'imgManager') {
                             initImagePanel();
                         }
                     }else {
                         tabs[j].className = "";
-                        $G(tabs[j].getAttribute('data-content-id')).style.display = "none";
+                        $G(tabs[j].getAttribute('data-contents.html-id')).style.display = "none";
                     }
                 }
             });

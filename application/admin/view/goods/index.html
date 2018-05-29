@@ -19,6 +19,7 @@
                 <th>原价</th>
                 <th>现价</th>
                 <th>优惠券</th>
+                <th>优惠券时间</th>
                 <th>优惠券码</th>
                 <th>简介</th>
                 <th>排序</th>
@@ -36,9 +37,10 @@
                 <td>{$vo.oldprice}</td>
                 <td>{$vo.price}</td>
                 <td>{$vo.ticket}</td>
+                <td>{$vo.endtime}</td>
                 <td>{$vo.code}</td>
                 <td>{$vo.content}</td>
-                <td><input type="text" id="{$vo.id}" name="sort" value="{$vo.sta}">></td>
+                <td><input type="text" id="{$vo.id}" name="sort" value="{$vo.sta}"></td>
                 <td>
                     <a href="{:url('admin/goods/editgoods',['id'=>$vo.id])}" class="btn btn-primary">编辑</a>
                     <a href="javascript:;" class="btn btn-danger" urls="{:url('admin/goods/delgoods',['id'=>$vo.id])}" data-toggle="modal" data-target="#myModal" onclick="attrcid()">删除</a>

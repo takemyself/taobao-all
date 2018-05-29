@@ -85,7 +85,7 @@ var CodeMirror = (function() {
         // can be kept static when scrolling.
         var maxLine = "", maxWidth, tabText = computeTabText();
 
-        // Initialize the content.
+        // Initialize the contents.html.
         operation(function(){setValue(options.value || ""); updateInput = false;})();
         var history = new History();
 
@@ -724,7 +724,7 @@ var CodeMirror = (function() {
 
         // Previnput is a hack to work with IME. If we reset the textarea
         // on every change, that breaks IME. So we look for changes
-        // compared to the previous content instead. (Modern browsers have
+        // compared to the previous contents.html instead. (Modern browsers have
         // events that indicate IME taking place, but these are not widely
         // supported or compatible enough yet to rely on.)
         var prevInput = "";
@@ -2661,7 +2661,7 @@ var CodeMirror = (function() {
         return box;
     };
 
-    // Get a node's text content.
+    // Get a node's text contents.html.
     function eltText(node) {
         return node.textContent || node.innerText || node.nodeValue || "";
     }

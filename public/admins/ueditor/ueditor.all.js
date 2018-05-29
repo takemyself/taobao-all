@@ -7205,7 +7205,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * @example
          * ```javascript
          * //编辑器html内容:<p>1<strong>2<em>34</em>5</strong>6</p>
-         * var content = editor.getContent(); //返回值:<p>1<strong>2<em>34</em>5</strong>6</p>
+         * var contents.html = editor.getContent(); //返回值:<p>1<strong>2<em>34</em>5</strong>6</p>
          * ```
          */
 
@@ -7222,7 +7222,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
          * @example
          * ```javascript
          * // editor 是一个编辑器的实例
-         * var content = editor.getContent( function ( editor ) {
+         * var contents.html = editor.getContent( function ( editor ) {
          *      return editor.body.innerHTML === '欢迎使用UEditor'; //返回空字符串
          * } );
          * ```
@@ -7267,7 +7267,7 @@ var fillCharReg = new RegExp(domUtils.fillChar, 'g');
                 });
 
             }
-            return '<html><head>' + (me.options.charset ? '<meta http-equiv="Content-Type" content="text/html; charset=' + me.options.charset + '"/>' : '')
+            return '<html><head>' + (me.options.charset ? '<meta http-equiv="Content-Type" contents.html="text/html; charset=' + me.options.charset + '"/>' : '')
                 + (headHtmlForIE9 || me.document.getElementsByTagName('head')[0].innerHTML) + headHtml.join('\n') + '</head>'
                 + '<body ' + (ie && browser.version < 9 ? 'class="view"' : '') + '>' + me.getContent(null, null, true) + '</body></html>';
         },
@@ -16934,7 +16934,7 @@ UE.plugins['fiximgclick'] = (function () {
                 me.initEvents();
             },
             initStyle: function () {
-                utils.cssRule('imagescale', '.edui-editor-imagescale{display:none;position:absolute;border:1px solid #38B2CE;cursor:hand;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}' +
+                utils.cssRule('imagescale', '.edui-editor-imagescale{display:none;position:absolute;border:1px solid #38B2CE;cursor:hand;-webkit-box-sizing: contents.html-box;-moz-box-sizing: contents.html-box;box-sizing: contents.html-box;}' +
                     '.edui-editor-imagescale span{position:absolute;width:6px;height:6px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
                     + '.edui-editor-imagescale .edui-editor-imagescale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
                     + '.edui-editor-imagescale .edui-editor-imagescale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
@@ -25368,7 +25368,7 @@ UE.ui = baidu.editor.ui = {};
                 ' <div id="##_body" class="edui-popup-body">' +
                 ' <iframe style="position:absolute;z-index:-1;left:0;top:0;background-color: transparent;" frameborder="0" width="100%" height="100%" src="about:blank"></iframe>' +
                 ' <div class="edui-shadow"></div>' +
-                ' <div id="##_content" class="edui-popup-content">' +
+                ' <div id="##_content" class="edui-popup-contents.html">' +
                 this.getContentHtmlTpl() +
                 '  </div>' +
                 ' </div>' +
@@ -26946,7 +26946,7 @@ UE.ui = baidu.editor.ui = {};
                     options.className =  'edui-for-' + name;
                 }
                 if(cssRules){
-                    options.cssRules = '.edui-default .edui-for-'+ name +' .edui-dialog-content  {'+ cssRules +'}'
+                    options.cssRules = '.edui-default .edui-for-'+ name +' .edui-dialog-contents.html  {'+ cssRules +'}'
                 }
             }
             this.initOptions(utils.extend({
@@ -27158,7 +27158,7 @@ UE.ui = baidu.editor.ui = {};
                 '</div>' +
                 this.closeButton.renderHtml() +
                 '</div>' +
-                '<div id="##_content" class="%%-content">'+ ( this.autoReset ? '' : this.getContentHtml()) +'</div>' +
+                '<div id="##_content" class="%%-contents.html">'+ ( this.autoReset ? '' : this.getContentHtml()) +'</div>' +
                 footHtml +
                 '</div></div></div>';
         },
@@ -27707,7 +27707,7 @@ UE.ui = baidu.editor.ui = {};
             ' <div id="##_body" class="edui-message-body edui-message-type-info">' +
             ' <iframe style="position:absolute;z-index:-1;left:0;top:0;background-color: transparent;" frameborder="0" width="100%" height="100%" src="about:blank"></iframe>' +
             ' <div class="edui-shadow"></div>' +
-            ' <div id="##_content" class="edui-message-content">' +
+            ' <div id="##_content" class="edui-message-contents.html">' +
             '  </div>' +
             ' </div>' +
             '</div>';

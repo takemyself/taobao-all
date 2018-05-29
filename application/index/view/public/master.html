@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>当日</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ROOT__/index/swiper/swiper-4.1.6.min.css">
+    <link rel="stylesheet" href="__ROOT__/index/css/index.css">
+    <script src="__ROOT__/index/js/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="__ROOT__/index/swiper/swiper-4.1.6.min.js"></script>
+</head>
+<body>
+<div class="top">
+    <a href="javascript:scroll(0,0);">
+        <img src="__ROOT__/index/img/top.png" width="35" height="35" alt="">
+    </a>
+</div>
+<nav>
+    <div class="logo">
+    {if condition="$intData['pic']!=1"}
+        <div style="min-width: 414px;position: absolute;left: 50%;top: 0;transform: translateX(-50%)">
+            <img src="__ROOT__/uploads/{$intData['pic']}" width="100%" height="42" alt="">
+        </div>
+    {else /}
+        LOGO
+    {/if}
+    </div>
+    <ul style="position: relative;height:45px;box-shadow: 0px 0px 5px red;">
+        <li>
+            <a href="{:url('index/index/category',['cid'=>9999])}" cid="9999" class="a_active_in active">
+                全部
+            </a>
+        </li>
+        {volist name="cateData" id="vo" offset="0" length='3'}
+        <li>
+            <a href="{:url('index/index/category',['cid'=>$vo.cid])}" cid="{$vo.cid}" class="a_active">
+                {$vo.cname}
+            </a>
+        </li>
+        {/volist}
+        <li>
+            <a href="javascript:;" class="nav_mess">
+                <img src="__ROOT__/index/img/cate.png" height="20" alt="">
+            </a>
+        </li>
+        <div class="nav_dowm" style="padding-bottom: 15px;">
+            {volist name="cateData" id="vo"}
+            {if condition="$i>3"}
+            <a href="{:url('index/index/category',['cid'=>$vo.cid])}" class="col-xs-4" style="margin-top: 15px;">
+                <div class="col-xs-12 fontSize_nav">
+                    {$vo.cname}
+                </div>
+            </a>
+            {/if}
+            {/volist}
+        </div>
+    </ul>
+</nav>
+<div style="width:100%;overflow: hidden;">
+    <div class="swiper-container" id="swiper1">
+        <div class="swiper-wrapper">
+            {volist name="$banData" id="vo"}
+            <div class="swiper-slide">
+                <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+
+{block name="content"}content{/block}
+
+<div class="col-xs-12 beian">备案号：{$intData.beian}</div>
+</body>
+<script>
+  $(function () {
+    var mySwiper = new Swiper('#swiper1', {
+      autoplay: true,//可选选项，自动滑动
+      grabCursor: true,//手掌
+      speed: 300,//滑动到结束速度
+      loop: true,//环路
+    });
+    if (mySwiper.slides.length <= 3) {
+      mySwiper.destroy();
+    }
+
+    var oheight = $('nav').height();
+    $('#swiper1').css({'marginTop': oheight + 'px'});
+    var sta = true;
+    $('.nav_mess').click(function () {
+      if (sta) {
+        $('.nav_dowm').show();
+        sta = false;
+      } else {
+        $('.nav_dowm').hide();
+        sta = true;
+      }
+    });
+
+  });
+</script>
+</html>

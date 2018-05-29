@@ -56,7 +56,7 @@
                     </li>
                     <script>
                         function out() {
-                            $.post("out",{},function (res) {
+                            $.post("{:url('admin/index/out')}",{},function (res) {
                                 if (res){
                                     location.reload();
                                 }
@@ -75,8 +75,7 @@
         </section>
     </div>
 
-
-    <!-- /.content-footer -->
+    <!-- /.contents.html-footer -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0.0
@@ -105,5 +104,8 @@
 </div>
 
 </body>
-
+<script>
+  var wheight=$(window).height()-104;
+  $('.content').css({'minHeight':wheight+'px'});
+</script>
 </html>

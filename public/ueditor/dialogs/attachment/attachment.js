@@ -21,7 +21,7 @@
         for (var i = 0; i < tabs.length; i++) {
             domUtils.on(tabs[i], "click", function (e) {
                 var target = e.target || e.srcElement;
-                setTabFocus(target.getAttribute('data-content-id'));
+                setTabFocus(target.getAttribute('data-contents.html-id'));
             });
         }
 
@@ -33,7 +33,7 @@
         if(!id) return;
         var i, bodyId, tabs = $G('tabhead').children;
         for (i = 0; i < tabs.length; i++) {
-            bodyId = tabs[i].getAttribute('data-content-id')
+            bodyId = tabs[i].getAttribute('data-contents.html-id')
             if (bodyId == id) {
                 domUtils.addClass(tabs[i], 'focus');
                 domUtils.addClass($G(bodyId), 'focus');
@@ -59,7 +59,7 @@
             var list = [], id, tabs = $G('tabhead').children;
             for (var i = 0; i < tabs.length; i++) {
                 if (domUtils.hasClass(tabs[i], 'focus')) {
-                    id = tabs[i].getAttribute('data-content-id');
+                    id = tabs[i].getAttribute('data-contents.html-id');
                     break;
                 }
             }

@@ -39,7 +39,6 @@ class Goods extends Common
                 exit;
             }
             $data['content']=implode(',',$data['content']);
-            dump($data);
             $this->return_res($this->model->store($data),$this->url);
         }
         $this->assign('cateDate',$cateDate);
@@ -57,7 +56,6 @@ class Goods extends Common
                 exit;
             }
             $data['content']=implode(',',$data['content']);
-            dump($data);
             $this->return_res($this->model->store($data),$this->url);
         }
         $this->assign('oldData',$oldData);

@@ -119,7 +119,7 @@ The default control bar that is a container for most of the controls.
 .vjs-default-skin.vjs-using-native-controls .vjs-control-bar {
   display: none;
 }
-/* IE8 is flakey with fonts, and you have to change the actual content to force
+/* IE8 is flakey with fonts, and you have to change the actual contents.html to force
 fonts to show/hide properly.
   - "\9" IE8 hack didn't work for this
   - Found in XP IE8 from http://modern.ie. Does not show up in "IE8 mode" in IE9

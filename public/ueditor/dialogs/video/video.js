@@ -27,7 +27,7 @@
             domUtils.on(tabs[i], "click", function (e) {
                 var j, bodyId, target = e.target || e.srcElement;
                 for (j = 0; j < tabs.length; j++) {
-                    bodyId = tabs[j].getAttribute('data-content-id');
+                    bodyId = tabs[j].getAttribute('data-contents.html-id');
                     if(tabs[j] == target){
                         domUtils.addClass(tabs[j], 'focus');
                         domUtils.addClass($G(bodyId), 'focus');
