@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>当日</title>
+    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>{$intData['title']}</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="__ROOT__/index/css/index.css">
     <script src="__ROOT__/index/js/jquery.min.js"></script>
     <script src="__ROOT__/index/js/clipboard.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
 <body>
 <div style="overflow: hidden;">
@@ -28,23 +28,35 @@
                 {$contents.introduction}
             </div>
             <div class="col-xs-12" style="vertical-align: bottom;">
-                <div class="pull-left m_p_zreo fontSize_fin">券后价：<span style="color: #ff5044;">¥</span><span class="buy_now">{$contents.price}</span></div>
+                <div class="pull-left m_p_zreo fontSize_fin">{if condition="$contents.mid"}活动价：{else}券后价：{/if}<span style="color: #ff5044;">¥</span><span class="buy_now">{$contents.price}</span></div>
                 <div class="pull-left m_p_zreo" style="margin-left: 5px;"><del class="fontSize_cat">¥{$contents.oldprice}</del></div>
-                <div class="pull-right fontSize_buy">{$contents.hadbuy}人已购</div>
+                <div class="pull-right fontSize_buy">{$contents.hadbuy}人想买</div>
             </div>
         </a>
     </div>
     <div class="row" style="background:#f1f1f1;overflow: hidden;">
-        <div class="content_quan" style="background-image:url('__ROOT__/index/img/quan.png');">
-            <div class="col-xs-2" style="font-size: 16px;color: #ff5044;line-height: 88px;">¥<span style="font-size: 30px;color: #ff5044;line-height: 88px;">{$contents.ticket}</span></div>
+        {if condition="$contents.mid"}
+        <div class="content_quan" style="background-image:url('__ROOT__/index/img/quan2.png');">
             <div class="col-xs-6">
-                <div style="margin-top: 25px;text-align: center;">优惠券使用期限</div>
+                <div style="margin-top: 20px;text-align: center;"><span style="color: #ff6028;font-size: 20px;font-weight: 700;">{if condition="$contents.mid"}{$contents.ticket}{else}优惠券使用{/if}</span>&nbsp;&nbsp;期限</div>
                 <div style="text-align: center;font-size: 10px;">{$contents.endtime}</div>
             </div>
-            <div class="col-xs-4 tobuy" style="color: white;line-height: 88px;text-align: center;font-size: 20px;">
-                立即领券
-            </div>
+            <button class="col-xs-4 tobuy copy" style="color: white;line-height: 88px;text-align: center;font-size: 20px;background: none;outline: none;border: none;">
+                {if condition="$contents.mid"}立即抢购{else}立即领券{/if}
+            </button>
         </div>
+        {else /}
+        <div class="content_quan" style="background-image:url('__ROOT__/index/img/quan.png');">
+            <div class="col-xs-2" style="font-size: 16px;color: #ff5044;line-height: 88px;">{if condition="$contents.mid"}{else}¥<span style="font-size: 30px;color: #ff5044;line-height: 88px;">{$contents.ticket}{/if}</span></div>
+            <div class="col-xs-6">
+                <div style="margin-top: 25px;text-align: center;">{if condition="$contents.mid"}{$contents.ticket}{else}优惠券使用{/if}期限</div>
+                <div style="text-align: center;font-size: 10px;">{$contents.endtime}</div>
+            </div>
+            <button class="col-xs-4 tobuy copy" style="color: white;line-height: 88px;text-align: center;font-size: 20px;background: none;outline: none;border: none;">
+                {if condition="$contents.mid"}立即抢购{else}立即领券{/if}
+            </button>
+        </div>
+        {/if}
     </div>
     <div class="row p30">
         <a href="{:url('index/index/index')}" class="col-xs-8 col-xs-offset-2"
@@ -53,15 +65,15 @@
         </a>
     </div>
 </div>
-
+<span id="selector" style="opacity: 0;">{$contents['code']}</span>
 <!-- Modal -->
 <div class="modal-backdrop in opas opa"></div>
-<div class="modal opas opa" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block">
-    <div class="modal-dialog" role="document">
+<div class="modal opas opa" style="display: block">
+    <div class="modal-dialog">
         <div class="modal-content" style="overflow: hidden;">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="col-xs-12 lin_title">
+                    <div class="col-xs-12 lin_title" >
                         {$contents.name}
                     </div>
                     <div class="col-xs-2 copyclose" style="background: #ff5044;text-align: right;color: white;font-size: 32px;line-height: 43px;position: absolute;right: 10px;top: 0;">
@@ -69,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="font-size: 14px;margin-top: 5px;">
+            <div class="row" style="font-size: 14px;margin-top: 5px;overflow: scroll;max-height: 142px;">
                 <div class="col-xs-10 col-xs-offset-1" style="padding:10px 0;text-align: left;font-size: 12px;line-height:20px;color: #000;background-color: #FFF6F2;border: 1px dashed #FE814B;">
                     {volist name="$contents.content" id="vo"}
                     <div class="col-xs-12">
@@ -84,38 +96,39 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12" style="width:100%;overflow:hidden;padding: 10px 0;color: #828888;text-align: center;font-size: 12px;background-color: #F6F7F6;">复制文案，打开手机淘宝即可领取优惠卷</div>
+                <div class="col-xs-12" style="width:100%;overflow:hidden;padding:0;color: #828888;text-align: center;font-size: 12px;line-height:30px;background-color: #F6F7F6;">复制文案，打开手机淘宝即可领取优惠卷</div>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script>
-  $('.tobuy').click(function () {
-    $('.opas').removeClass('opa');
-  });
+    $('.tobuy').click(function () {
+        $('.opas').removeClass('opa');
+    });
 
-  $('.copyclose').click(function () {
-    $('.opas').addClass('opa');
-  });
+    $('.copyclose').click(function () {
+        $('.opas').addClass('opa');
+    });
 
-  $('.rebefore').click(function () {
-    history.go(-1);
-  });
+    $('.copyed').click(function () {
+        $('.copyed').html('复制成功');
+    });
 
-  var str="{$contents['code']}";
-  var clipboard = new Clipboard('.copyed', {
-    text: function() {
-      return str;
-    }
-  });
-
-  clipboard.on('success', function(e) {
-    $('.copyed').html('复制成功');
-  });
-
-  clipboard.on('error', function(e) {
-    console.log(e);
-  });
+    var aEle = document.querySelector('.copy');
+    aEle.addEventListener('click',function(){
+        var copyDOM = document.querySelector('#selector');
+        var range = document.createRange();
+        range.selectNode(copyDOM);
+        window.getSelection().addRange(range);
+        var successful = document.execCommand('copy');
+        try{
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copy email command was ' + msg);
+        }catch(err) {
+            console.log('Oops, unable to copy');
+        }
+        window.getSelection().removeAllRanges();
+    },false);
 </script>
 </html>

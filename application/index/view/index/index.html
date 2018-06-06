@@ -1,12 +1,35 @@
 {extend name="public/master"}
 {block name="content"}
-
+<div style="width:100%;overflow: hidden;">
+    <div class="swiper-container" id="swiper1">
+        <div class="swiper-wrapper">
+            {volist name="$banData" id="vo"}
+            <div class="swiper-slide">
+                {if condition="$vo.urls"}
+                <a href="{$vo.urls}">
+                    <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+                </a>
+                {elseif condition="$vo.gid>0"}
+                <a href="{:url('index/index/contents',['id'=>$vo.gid])}">
+                    <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+                </a>
+                {else /}
+                <a href="{:url('index/index/category',['cid'=>$vo.cid])}">
+                    <img src="__ROOT__/uploads/{$vo.pic}" width="100%" alt="">
+                </a>
+                {/if}
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
 <div style="overflow: hidden;">
     <div class="row center">
-        {volist name="$goodsData" id="vo" offset="1" length='4'}
+        {volist name="$goodsData" id="vo"}
+        {if condition="$vo.sta!=9999"}
         <a href="{:url('index/index/contents',['id'=>$vo.id])}" class="col-xs-12 p10">
             <div class="col-xs-5">
-                <img src="__ROOT__/uploads/{$vo.pic}" width="140" height="140" alt="">
+                <img class="lazy" style="width: 100%;max-width: 140px;" data-original="__ROOT__/uploads/{$vo.pic}"  alt="">
             </div>
             <div class="col-xs-7" style="height: 140px;overflow: hidden;">
                 <div class="row fontSize_title">
@@ -18,26 +41,25 @@
                 <div class="row">
                     <div class="col-xs-6 m_p_zreo fontSize_cat">天猫价：{$vo.oldprice}</div>
                     <div class="col-xs-6 fontSize_buy">
-                        {$vo.hadbuy}人已购
+                        {$vo.hadbuy}人想买
                     </div>
                 </div>
                 <div class="row center_price">
                     <div class="col-xs-6 m_p_zreo fontSize_now">¥{$vo.price}</div>
                     <div class="col-xs-6">
                         <div class="juan" style="background-image:url('__ROOT__/index/img/jaun-1.png') ">
+                            {if condition="$vo.mid"}
+                            {$vo.ticket}
+                            {else /}
                             {$vo.ticket}元 券
+                            {/if}
                         </div>
                     </div>
                 </div>
             </div>
         </a>
+        {/if}
         {/volist}
-    </div>
-    <div class="row p30">
-        <a href="{:url('index/index/category',['cid'=>9999])}" class="col-xs-8 col-xs-offset-2"
-           style="background: #ff5044;height: 50px;border-radius: 50px;text-align: center;line-height: 50px;color: white;font-size: 18px;">
-            查看更多
-        </a>
     </div>
 </div>
 
@@ -50,37 +72,60 @@
             <div class="closed">×</div>
         </div>
     </div>
-    <div class="col-xs-12" style="height: 70px;overflow: hidden;">
-        <div class="" style="font-size: 16px;line-height: 28px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;">
-            {$goodsData[0]['name']}
-        </div>
-        <div class="center_price">
-            <div class="col-xs-6 m_p_zreo fontSize_now">¥{$goodsData[0]['price']}</div>
-            <div class="col-xs-6">
-                <div class="juan" style="background-image:url('__ROOT__/index/img/jaun-1.png') ">
-                    {$goodsData[0]['ticket']}元 券
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="row p30">
-        <a href="{:url('index/index/contents',['id'=>$goodsData[0]['id']])}" class="col-xs-8 col-xs-offset-2 copyed"
+        <a id="copyed" href="javascript:;" class="col-xs-8 col-xs-offset-2"
            style="background: #ff5044;height: 40px;border-radius: 40px;text-align: center;line-height: 40px;color: white;font-size: 16px;">
-            立即查看
+            立即复制口令
         </a>
     </div>
 </div>
+<span id="selector" style="opacity: 0;">{$goodsData[0]['code']}</span>
 <script>
-    setTimeout(function () {
-      $('.opas').removeClass('opa');
-      $('.index_model').removeClass('opa');
-      $('body').addClass('modal-open');
-    },3000);
+  var aEle = document.querySelector('#copyed');
+  aEle.addEventListener('click',function(){
+    var copyDOM = document.querySelector('#selector');
+    var range = document.createRange();
+    range.selectNode(copyDOM);
+    window.getSelection().addRange(range);
+    var successful = document.execCommand('copy');
+    try{
+      var msg = successful ? 'successful' : 'unsuccessful';
+      aEle.innerHTML='复制成功,打开淘宝领取';
+      console.log('Copy email command was ' + msg);
+    }catch(err) {
+      console.log('Oops, unable to copy');
+    }
+    window.getSelection().removeAllRanges();
+  },false);
+
+  var mySwiper = new Swiper('#swiper1', {
+    autoplay: true,//可选选项，自动滑动
+    grabCursor: true,//手掌
+    speed: 300,//滑动到结束速度
+    loop: true,//环路
+  });
+  if (mySwiper.slides.length <= 3) {
+    mySwiper.destroy();
+  }
+
+  var tan="{$goodsData[0]['sta']}";
+  var bid="{$bid}";
+    if (tan==9999&&bid<2){
+        setTimeout(function () {
+            $('.opas').removeClass('opa');
+            $('.index_model').removeClass('opa');
+            $('body').addClass('modal-open');
+            },3000);
+    }
 
   $('.closed').click(function () {
     $('.opas').addClass('opa');
     $('.index_model').addClass('opa');
     $('body').removeClass('modal-open');
   });
+
+  var oheight = $('nav').height();
+  $('#swiper1').css({'marginTop': oheight + 'px'});
 </script>
 {/block}

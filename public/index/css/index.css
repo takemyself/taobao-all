@@ -4,7 +4,7 @@ ul{list-style: none;padding: 0;margin: 0;}
 .logo{height:42px;text-align: center;font-size: 16px;line-height: 42px;background: #ec2f2f;color: white;overflow: hidden;position: relative;}
 nav{position: fixed;top: 0;left: 0;width: 100%;z-index: 99;background: white;}
 nav>ul{color: #333;}
-nav>ul>li{width:20%;float: left;height: 41px;margin-top: 4px;}
+nav>ul>li{width:16.5%;float: left;height: 41px;margin-top: 4px;}
 nav>ul>li>a{display: block;width:64px;margin:0 auto;text-align: center;line-height:41px;font-size: 16px;}
 nav>ul>li>a.active{border-bottom: 2px solid #333;}
 .nav_dowm{width:100%;position: absolute;right: 0;top: 46px;background: white;color: black;z-index: 999;display: none;}

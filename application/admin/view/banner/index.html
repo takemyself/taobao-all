@@ -13,6 +13,7 @@
             <tr>
                 <th>编号</th>
                 <th>图片</th>
+                <th>链接</th>
                 <th>排序</th>
                 <th>操作</th>
             </tr>
@@ -22,8 +23,10 @@
             <tr>
                 <td>{$vo.id}</td>
                 <td><img src="__ROOT__/uploads/{$vo.pic}" width="200" alt=""></td>
+                <td>{if condition="$vo.urls"}{$vo.urls}{elseif condition="$vo.gid>0"}商品：{$vo.name}{else /}分类：{$vo.cname}{/if}</td>
                 <td><input type="text" id="{$vo.id}" name="sort" value="{$vo.sort}"></td>
                 <td>
+                    <a href="{:url('admin/banner/editbanner',['id'=>$vo.id])}" class="btn btn-primary">编辑</a>
                     <a href="javascript:;" class="btn btn-danger" urls="{:url('admin/banner/delbanner',['id'=>$vo.id])}" data-toggle="modal" data-target="#myModal">删除</a>
                 </td>
             </tr>

@@ -15,6 +15,7 @@ class Category extends Common
     public function _initialize()
     {
         parent ::_initialize();
+        $this->redis->del('cateData');
         $this->model=new \app\admin\model\Category();
         $this->url=url('admin/category/index');
     }

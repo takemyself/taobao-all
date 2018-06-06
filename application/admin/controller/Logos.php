@@ -15,6 +15,7 @@ class Logos extends Common
     public function _initialize()
     {
         parent ::_initialize();
+        $this->redis->del('intData');
         $this->model=new \app\admin\model\Logos();
         $this->url=url('admin/logos/index',['id'=>1]);
     }

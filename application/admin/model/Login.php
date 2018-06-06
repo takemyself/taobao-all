@@ -22,8 +22,8 @@ class Login extends Common
 	      return ['valid'=>0,'msg'=>'验证码错误，请重新输入'];
 	   }
 	   $res=$this->where('name',$data['name'])->where('password',$data['password'])->select();
-	   if (!empty($res)){
-	      Session::set('admin.id',$res[0]['id']);
+        if (isset($res[0]['id'])){
+            Session::set('admin.id',$res[0]['id']);
 	      return ['valid'=>1,'msg'=>'登录成功'];
 	   }else{
 		  return ['valid'=>0,'msg'=>'账号或密码错误'];

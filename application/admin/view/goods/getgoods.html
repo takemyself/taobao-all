@@ -5,9 +5,6 @@
         <h3 class="panel-title">商品列表</h3>
     </div>
     <div class="panel-body">
-        <a href="{:url('admin/goods/addgoods')}" class="btn btn-info">新增商品</a>
-    </div>
-    <div class="panel-body">
         <form class="form-inline" method="post">
             <div class="form-group">
                 <label for="exampleInputEmail2">商品名称</label>
@@ -29,7 +26,6 @@
                 <th>现价</th>
                 <th>优惠券</th>
                 <th>优惠券时间</th>
-                <th>优惠券到期时间</th>
                 <th>优惠券码</th>
                 <th>简介</th>
                 <th>排序</th>
@@ -48,12 +44,11 @@
                 <td>{$vo.price}</td>
                 <td>{$vo.ticket}</td>
                 <td>{$vo.endtime}</td>
-                <td>{$vo.lasttime}{if condition="$times>$vo.lasttime"}过期{/if}</td>
                 <td>{$vo.code}</td>
                 <td>{$vo.content}</td>
                 <td><input type="text" id="{$vo.id}" name="sort" value="{$vo.sta}"></td>
                 <td>
-                    <a href="{:url('admin/goods/editgoods',['id'=>$vo.id,'page'=>$Request.param.page])}" class="btn btn-primary">编辑</a>
+                    <a href="{:url('admin/goods/editgoods',['id'=>$vo.id])}" class="btn btn-primary">编辑</a>
                     <a href="javascript:;" class="btn btn-danger" urls="{:url('admin/goods/delgoods',['id'=>$vo.id])}" data-toggle="modal" data-target="#myModal" onclick="attrcid()">删除</a>
                 </td>
             </tr>

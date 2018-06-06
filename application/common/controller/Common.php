@@ -1,6 +1,7 @@
 <?php
 namespace app\common\controller;
 use app\admin\model\Login;
+use Predis\Client;
 use think\Controller;
 use think\Request;
 use think\Session;
@@ -22,9 +23,12 @@ class Common extends Controller
     //实例化模型
     protected $modelTwo;
 
+    protected $redis;
+
     public function _initialize()
     {
         parent ::_initialize();
+        $this->redis=new Client();
         $this -> adminid = Session ::get('admin.id');
         if (!$this -> adminid) {
             $this -> redirect('admin/login/index');
